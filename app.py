@@ -14,8 +14,8 @@ def load_data():
     df = pd.read_csv("Nassau Candy Distributor.csv")
     
     # Calculate current lead time
-    df['Order Date'] = pd.to_datetime(df['Order Date'])
-    df['Ship Date'] = pd.to_datetime(df['Ship Date'])
+    df['Order Date'] = pd.to_datetime(df['Order Date'], format='mixed', errors='coerce')
+    df['Ship Date'] = pd.to_datetime(df['Ship Date'], format='mixed', errors='coerce')
     df['Lead Time'] = (df['Ship Date'] - df['Order Date']).dt.days
     
     # Factory Mapping based on requirements
